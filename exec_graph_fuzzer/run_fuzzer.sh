@@ -4,14 +4,17 @@
 
 set -e
 
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Build the target
 echo "Building target program..."
-cd ../exec_graph_fuzzer_target
+cd "$SCRIPT_DIR/../exec_graph_fuzzer_target"
 make
 
 # Build the fuzzer
 echo "Building fuzzer..."
-cd ../exec_graph_fuzzer
+cd "$SCRIPT_DIR"
 cargo build --release
 
 # Run the fuzzer
